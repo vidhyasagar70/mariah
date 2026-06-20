@@ -1,5 +1,0 @@
-import { Request, Response, NextFunction } from 'express';
-export declare class DashboardController {
-    getSummary(req: Request, res: Response, next: NextFunction): Promise<Response<any, Record<string, any>> | undefined>;
-}
-export declare const dashboardController: DashboardController;
