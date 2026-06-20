@@ -281,10 +281,10 @@ export default function BulkPricingModal() {
             animate="visible"
             exit="exit"
             onClick={e => e.stopPropagation()}
+            className="p-6 sm:p-10"
             style={{
               background: '#FFFFFF',
               borderRadius: '24px',
-              padding: '40px',
               width: '100%',
               maxWidth: '680px',
               boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
@@ -298,10 +298,8 @@ export default function BulkPricingModal() {
               id="modal-close"
               onClick={closeModal}
               aria-label="Close modal"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6"
               style={{
-                position: 'absolute',
-                top: '24px',
-                right: '24px',
                 width: '32px',
                 height: '32px',
                 display: 'flex',
@@ -399,7 +397,7 @@ export default function BulkPricingModal() {
                 {/* Heading */}
                 <h2
                   style={{
-                    fontSize: '36px',
+                    fontSize: 'clamp(1.5rem, 5vw, 2.25rem)',
                     fontWeight: 800,
                     color: '#111111',
                     letterSpacing: '-0.02em',

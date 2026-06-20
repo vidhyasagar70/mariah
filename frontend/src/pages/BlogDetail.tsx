@@ -108,9 +108,9 @@ export default function BlogDetail() {
       {/* ── Hero Image ── */}
       {blog.featuredImage && (
         <div
+          className="h-[200px] sm:h-[420px]"
           style={{
             width: '100%',
-            height: '420px',
             overflow: 'hidden',
             position: 'relative',
             background: '#0A0A0A',
@@ -132,7 +132,10 @@ export default function BlogDetail() {
       )}
 
       {/* ── Article Body ── */}
-      <main style={{ maxWidth: '820px', margin: '0 auto', padding: '60px 24px 120px' }}>
+      <main
+        className="py-8 px-4 sm:py-16 sm:px-6"
+        style={{ maxWidth: '820px', margin: '0 auto' }}
+      >
         {/* Breadcrumb */}
         <motion.nav
           initial={{ opacity: 0, y: 16 }}
@@ -148,8 +151,8 @@ export default function BlogDetail() {
           <Link to="/blogs" style={{ color: '#A0A0A0', textDecoration: 'none' }} onMouseEnter={e => (e.currentTarget.style.color = '#C99B67')} onMouseLeave={e => (e.currentTarget.style.color = '#A0A0A0')}>
             Blog
           </Link>
-          <span>/</span>
-          <span style={{ color: '#667085', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '220px' }}>
+          <span className="hidden sm:inline">/</span>
+          <span className="hidden sm:inline" style={{ color: '#667085', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '220px' }}>
             {blog.title}
           </span>
         </motion.nav>

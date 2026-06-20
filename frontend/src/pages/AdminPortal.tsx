@@ -43,11 +43,14 @@ function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0A0A0A' }}>
-      <div style={{
-        background: '#FFFFFF', borderRadius: '24px', padding: '48px 40px',
-        width: '100%', maxWidth: '440px', boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
-      }}>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0A0A0A', padding: '16px' }}>
+      <div
+        className="p-6 sm:p-10"
+        style={{
+          background: '#FFFFFF', borderRadius: '24px',
+          width: '100%', maxWidth: '440px', boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
+        }}
+      >
         <div style={{ textAlign: 'center', marginBottom: '36px' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '4px', color: '#C99B67', textTransform: 'uppercase' }}>Admin Portal</span>
           <h1 style={{ fontSize: '32px', fontWeight: 800, color: '#111111', marginTop: '8px', letterSpacing: '-0.025em' }}>Mariah Coirs</h1>
@@ -174,14 +177,17 @@ function BlogFormModal({
       style={{
         position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.6)',
         backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'flex-start',
-        justifyContent: 'center', padding: '24px', overflowY: 'auto',
+        justifyContent: 'center', padding: '12px', overflowY: 'auto',
       }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div style={{
-        background: '#FFFFFF', borderRadius: '20px', padding: '36px 40px',
-        width: '100%', maxWidth: '780px', boxShadow: '0 24px 60px rgba(0,0,0,0.3)',
-      }}>
+      <div
+        className="p-5 sm:p-10"
+        style={{
+          background: '#FFFFFF', borderRadius: '20px',
+          width: '100%', maxWidth: '780px', boxShadow: '0 24px 60px rgba(0,0,0,0.3)',
+        }}
+      >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
           <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#111', letterSpacing: '-0.02em' }}>
             {blog ? 'Edit Blog Post' : 'New Blog Post'}
@@ -204,7 +210,7 @@ function BlogFormModal({
           </div>
 
           {/* Slug + Meta Title row */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label style={labelStyle}>URL Slug (auto-generated)</label>
               <input value={slug} onChange={(e) => setSlug(e.target.value)} placeholder="benefits-of-coco-peat" style={inputStyle}
@@ -265,7 +271,7 @@ function BlogFormModal({
           </div>
 
           {/* Publish toggle + Submit */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '8px' }}>
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between pt-2">
             <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
               <div
                 onClick={() => setIsPublished(prev => !prev)}
@@ -286,7 +292,7 @@ function BlogFormModal({
               </span>
             </label>
 
-            <div style={{ display: 'flex', gap: '12px' }}>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
               <button type="button" onClick={onClose}
                 style={{ padding: '12px 24px', background: 'transparent', border: '1px solid #E4E7EC', borderRadius: '12px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '14px', fontWeight: 600, color: '#667085' }}>
                 Cancel
@@ -320,13 +326,13 @@ function DashboardTab() {
 
   return (
     <div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '40px' }}>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
         <Stat label="Total Blogs" value={data.totalBlogs} />
         <Stat label="Published" value={data.totalPublishedBlogs} gold />
         <Stat label="Total Enquiries" value={data.totalEnquiries} />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Enquiries */}
         <div style={{ background: '#FFFFFF', borderRadius: '16px', padding: '24px', border: '1px solid rgba(0,0,0,0.06)' }}>
           <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#111', marginBottom: '16px' }}>Recent Enquiries</h3>
@@ -408,8 +414,8 @@ function BlogsTab() {
       )}
 
       {!loading && blogs.length > 0 && (
-        <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.06)', overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.06)', overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
             <thead>
               <tr style={{ background: '#F9FAFB' }}>
                 {['Title', 'Slug', 'Status', 'Date', 'Actions'].map((h) => (
@@ -513,13 +519,13 @@ function EnquiriesTab() {
       <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#111', marginBottom: '20px' }}>Enquiries</h2>
 
       {/* Filters */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '20px' }}>
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-5">
         <input value={search} onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search name, email, country…" style={{ ...inputStyle, minWidth: '260px', flex: 1 }}
+          placeholder="Search name, email, country…" className="w-full sm:w-auto min-w-[260px] flex-1" style={inputStyle}
           onFocus={(e) => (e.currentTarget.style.borderColor = '#C99B67')} onBlur={(e) => (e.currentTarget.style.borderColor = '#E4E7EC')} />
-        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} style={inputStyle}
+        <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="w-full sm:w-auto" style={inputStyle}
           onFocus={(e) => (e.currentTarget.style.borderColor = '#C99B67')} onBlur={(e) => (e.currentTarget.style.borderColor = '#E4E7EC')} />
-        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} style={inputStyle}
+        <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="w-full sm:w-auto" style={inputStyle}
           onFocus={(e) => (e.currentTarget.style.borderColor = '#C99B67')} onBlur={(e) => (e.currentTarget.style.borderColor = '#E4E7EC')} />
         {(search || startDate || endDate) && (
           <button onClick={() => { setSearch(''); setStartDate(''); setEndDate(''); }}
@@ -538,8 +544,8 @@ function EnquiriesTab() {
       )}
 
       {!loading && enquiries.length > 0 && (
-        <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.06)', overflow: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+        <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.06)', overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '750px' }}>
             <thead>
               <tr style={{ background: '#F9FAFB' }}>
                 {['Name / Company', 'Email', 'Country', 'Product', 'Source', 'Date', 'Actions'].map((h) => (
@@ -583,10 +589,17 @@ function EnquiriesTab() {
       {/* Enquiry Detail Modal */}
       {selected && (
         <div
-          style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}
+          style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px' }}
           onClick={(e) => e.target === e.currentTarget && setSelected(null)}
         >
-          <div style={{ background: '#FFFFFF', borderRadius: '20px', padding: '36px', width: '100%', maxWidth: '560px', boxShadow: '0 24px 60px rgba(0,0,0,0.3)' }}>
+          <div
+            className="p-5 sm:p-9"
+            style={{
+              background: '#FFFFFF', borderRadius: '20px',
+              width: '100%', maxWidth: '560px', boxShadow: '0 24px 60px rgba(0,0,0,0.3)',
+              maxHeight: '90vh', overflowY: 'auto',
+            }}
+          >
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px' }}>
               <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#111' }}>Enquiry Details</h3>
               <button onClick={() => setSelected(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', color: '#667085' }}>✕</button>
@@ -670,14 +683,17 @@ export default function AdminPortal() {
   return (
     <div style={{ minHeight: '100vh', background: '#F5F5F5', display: 'flex', flexDirection: 'column' }}>
       {/* ── Top Bar ── */}
-      <header style={{
-        background: '#0A0A0A', color: '#FFFFFF', padding: '0 32px',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.3)', position: 'sticky', top: 0, zIndex: 100,
-      }}>
+      <header
+        className="px-4 sm:px-8"
+        style={{
+          background: '#0A0A0A', color: '#FFFFFF',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.3)', position: 'sticky', top: 0, zIndex: 100,
+        }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '20px', fontWeight: 800, letterSpacing: '-0.025em' }}>Mariah Coirs</span>
-          <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '3px', color: '#C99B67', textTransform: 'uppercase', borderLeft: '1px solid rgba(255,255,255,0.15)', paddingLeft: '12px' }}>Admin</span>
+          <span className="text-lg sm:text-xl" style={{ fontWeight: 800, letterSpacing: '-0.025em' }}>Mariah Coirs</span>
+          <span className="hidden sm:inline" style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '3px', color: '#C99B67', textTransform: 'uppercase', borderLeft: '1px solid rgba(255,255,255,0.15)', paddingLeft: '12px' }}>Admin</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <a href="/" target="_blank" rel="noopener noreferrer"
@@ -686,26 +702,35 @@ export default function AdminPortal() {
             View Site ↗
           </a>
           <button onClick={handleLogout}
-            style={{ padding: '8px 18px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px', fontWeight: 600, color: '#FFFFFF' }}>
+            className="px-3 sm:px-4 py-2"
+            style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px', fontWeight: 600, color: '#FFFFFF' }}>
             Log Out
           </button>
         </div>
       </header>
 
-      <div style={{ display: 'flex', flex: 1 }}>
+      <div className="flex flex-col md:flex-row" style={{ flex: 1 }}>
         {/* ── Sidebar ── */}
-        <aside style={{ width: '220px', background: '#FFFFFF', borderRight: '1px solid rgba(0,0,0,0.06)', padding: '28px 16px', flexShrink: 0 }}>
+        <aside
+          className="w-full md:w-[220px] flex flex-row md:flex-col overflow-x-auto p-4 md:p-6 md:py-8 border-b md:border-b-0 md:border-r shrink-0 gap-1"
+          style={{
+            background: '#FFFFFF',
+            borderColor: 'rgba(0,0,0,0.06)',
+          }}
+        >
           {TABS.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
+              className="w-auto md:w-full shrink-0 mb-0 md:mb-1"
               style={{
-                display: 'flex', alignItems: 'center', gap: '10px', width: '100%',
+                display: 'flex', alignItems: 'center', gap: '10px',
                 padding: '11px 14px', borderRadius: '10px', border: 'none', cursor: 'pointer',
-                marginBottom: '4px', fontFamily: 'inherit', fontSize: '14px', fontWeight: 600, textAlign: 'left',
+                fontFamily: 'inherit', fontSize: '14px', fontWeight: 600, textAlign: 'left',
                 background: activeTab === tab.id ? 'rgba(201,155,103,0.12)' : 'transparent',
                 color: activeTab === tab.id ? '#7A5C3A' : '#374151',
                 transition: 'all 0.15s',
+                whiteSpace: 'nowrap',
               }}
               onMouseEnter={(e) => { if (activeTab !== tab.id) (e.currentTarget as HTMLElement).style.background = '#F9FAFB'; }}
               onMouseLeave={(e) => { if (activeTab !== tab.id) (e.currentTarget as HTMLElement).style.background = 'transparent'; }}
@@ -717,7 +742,7 @@ export default function AdminPortal() {
         </aside>
 
         {/* ── Main Content ── */}
-        <main style={{ flex: 1, padding: '36px 40px', overflowY: 'auto' }}>
+        <main className="p-4 sm:p-10" style={{ flex: 1, overflowY: 'auto' }}>
           {activeTab === 'dashboard' && <DashboardTab />}
           {activeTab === 'blogs' && <BlogsTab />}
           {activeTab === 'enquiries' && <EnquiriesTab />}

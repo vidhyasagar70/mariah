@@ -38,10 +38,9 @@ export default function BlogListing() {
 
       {/* ── Hero Header ── */}
       <section
+        className="py-10 sm:py-20"
         style={{
           background: '#0A0A0A',
-          paddingTop: '80px',
-          paddingBottom: '80px',
           textAlign: 'center',
         }}
       >
@@ -84,7 +83,10 @@ export default function BlogListing() {
       </section>
 
       {/* ── Blog Grid ── */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 24px 120px' }}>
+      <section
+        className="py-10 sm:py-20 px-4 sm:px-6"
+        style={{ maxWidth: '1280px', margin: '0 auto' }}
+      >
         {loading && (
           <div style={{ display: 'flex', justifyContent: 'center', padding: '80px 0' }}>
             <div
@@ -130,7 +132,7 @@ export default function BlogListing() {
             }}
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
               gap: '28px',
             }}
           >
@@ -181,7 +183,10 @@ export default function BlogListing() {
                 </Link>
 
                 {/* Card Body */}
-                <div style={{ padding: '24px 28px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                <div
+                  className="p-5 sm:p-7"
+                  style={{ display: 'flex', flexDirection: 'column', flex: 1 }}
+                >
                   <span
                     style={{
                       fontSize: '11px',
