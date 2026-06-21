@@ -83,8 +83,7 @@ export default function HeroSection() {
     <section
       id="hero"
       aria-label="Mariah Coirs – Premium Coir Exporter"
-      className="relative w-full flex flex-col overflow-hidden"
-      style={{ height: '85vh', minHeight: '680px', maxHeight: '900px' }}
+      className="relative w-full flex flex-col overflow-hidden sm:min-h-[900px] lg:h-[100svh] lg:min-h-[760px] lg:max-h-[960px]"
     >
       {/* ══════════════════════════════════════════
           BACKGROUND IMAGE SLIDER
@@ -169,8 +168,8 @@ export default function HeroSection() {
       {/* ══════════════════════════════════════════
           MAIN CONTENT
       ══════════════════════════════════════════ */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 sm:px-10 lg:px-20 pt-24 pb-8">
-        <div className="max-w-[620px] w-full">
+      <div className="relative z-10 flex-none sm:flex-1 flex flex-col justify-start lg:justify-center w-full max-w-[1280px] mx-auto px-6 lg:px-10 pt-28 sm:pt-24 pb-4 sm:pb-8">
+        <div className="max-w-[720px] w-full">
 
           {/* ── Badge ── */}
           <motion.div
@@ -178,10 +177,10 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={0.1}
-            className="inline-flex mb-6"
+            className="inline-flex mb-4 sm:mb-6"
           >
             <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-300 border"
+              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full text-[8px] sm:text-[11px] font-semibold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-amber-300 border"
               style={{
                 background: 'rgba(0,0,0,0.45)',
                 backdropFilter: 'blur(12px)',
@@ -201,17 +200,18 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={0.2}
-            className="font-black tracking-tight text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl"
+            className="font-black tracking-tight text-white text-[32px] sm:text-5xl lg:text-[56px] xl:text-[60px]"
             style={{
-              lineHeight: '0.95',
+              lineHeight: '0.98',
               textShadow: '0 4px 20px rgba(0,0,0,0.30)',
             }}
           >
             Premium&nbsp;Coco&nbsp;Peat
             <br />
             <span style={{ color: '#D8A166', textShadow: '0 4px 20px rgba(0,0,0,0.30)' }}>
-              &amp;&nbsp;Coir&nbsp;Products
+              &amp;<br/>Coir&nbsp;Products
             </span>
+
             <br />
             for Global Growers
           </motion.h1>
@@ -222,7 +222,7 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={0.35}
-            className="mt-5 text-base sm:text-lg leading-relaxed max-w-[580px]"
+            className="mt-4 sm:mt-5 text-sm sm:text-lg leading-relaxed max-w-[580px]"
             style={{
               color: 'rgba(255,255,255,0.88)',
               textShadow: '0 2px 12px rgba(0,0,0,0.25)',
@@ -239,7 +239,7 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={0.5}
-            className="mt-8 flex flex-col sm:flex-row gap-4"
+            className="mt-5 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             {/* Primary – gold → opens Export modal */}
             <motion.button
@@ -249,7 +249,7 @@ export default function HeroSection() {
               whileTap={shouldReduce ? {} : { scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               aria-label="Request an export quote from Mariah Coirs"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-[15px] text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-[14px] sm:text-[15px] text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               style={{
                 background: 'linear-gradient(135deg, #D9A56A 0%, #C9875A 100%)',
                 boxShadow: '0 8px 32px rgba(185,128,60,0.45), 0 2px 8px rgba(0,0,0,0.3)',
@@ -269,7 +269,7 @@ export default function HeroSection() {
               whileTap={shouldReduce ? {} : { scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               aria-label="View Mariah Coirs products"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-[15px] text-white border border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold text-[14px] sm:text-[15px] text-white border border-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               style={{
                 background: 'rgba(255,255,255,0.06)',
                 backdropFilter: 'blur(10px)',
@@ -287,16 +287,16 @@ export default function HeroSection() {
           STATS CARDS — in-flow, below content
       ══════════════════════════════════════════ */}
       <div
-        className="relative z-10 px-6 sm:px-10 lg:px-20 pb-8"
+        className="relative z-10 w-full max-w-[1280px] mx-auto px-6 lg:px-10 pb-8"
         aria-label="Company statistics"
-        style={{ marginTop: '40px' }}
+        style={{ marginTop: '16px' }}
       >
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={0.7}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-[840px]"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 max-w-[840px]"
         >
           {STATS.map(({ value, label }) => (
             <motion.div
@@ -306,7 +306,7 @@ export default function HeroSection() {
                 boxShadow: '0 8px 32px rgba(185,128,60,0.22), inset 0 1px 0 rgba(255,255,255,0.12)'
               }}
               transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-              className="flex flex-col items-start p-4 sm:p-5 rounded-2xl border cursor-default"
+              className="flex flex-col items-start p-3 sm:p-5 rounded-xl sm:rounded-2xl border cursor-default"
               style={{
                 background: 'rgba(255,255,255,0.08)',
                 backdropFilter: 'blur(16px)',
@@ -317,12 +317,12 @@ export default function HeroSection() {
               aria-label={`${value} ${label}`}
             >
               <span
-                className="text-2xl sm:text-3xl font-black leading-none"
+                className="text-xl sm:text-3xl font-black leading-none"
                 style={{ color: '#D8A166' }}
               >
                 {value}
               </span>
-              <span className="mt-1.5 text-[12px] sm:text-[13px] font-medium leading-snug" style={{ color: 'rgba(255,255,255,0.72)' }}>
+              <span className="mt-1.5 text-[10px] sm:text-[13px] font-medium leading-snug" style={{ color: 'rgba(255,255,255,0.72)' }}>
                 {label}
               </span>
             </motion.div>
@@ -369,7 +369,7 @@ export default function HeroSection() {
         initial="hidden"
         animate="visible"
         custom={1.1}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2"
         aria-label="Scroll down"
       >
         <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/40">

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useModal } from '../context/ModalContext';
 
 const NAV_LINKS = [
@@ -14,12 +14,15 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const { openModal } = useModal();
+  const { pathname } = useLocation();
   const [menuOpen, setMenuOpen]   = useState(false);
   const [scrolled, setScrolled]   = useState(false);
+  const isHeroState = pathname === '/' && !scrolled;
 
   /* ── scroll shadow ── */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -45,12 +48,12 @@ export default function Navbar() {
       <header
         className={[
           'fixed top-0 left-0 right-0 z-50 w-full',
-          'transition-shadow duration-300',
+          'transition-[background-color,box-shadow] duration-300',
           scrolled
             ? 'shadow-[0_2px_20px_rgba(0,0,0,0.08)]'
             : 'shadow-none',
         ].join(' ')}
-        style={{ backgroundColor: '#F8F6F3' }}
+        style={{ backgroundColor: isHeroState ? 'transparent' : '#F8F6F3' }}
       >
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-[72px]">
@@ -62,7 +65,7 @@ export default function Navbar() {
               className="flex flex-col justify-center leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 rounded-sm"
             >
               <span
-                className="text-[22px] font-extrabold tracking-tight text-gray-900"
+                className={`text-[22px] font-extrabold tracking-tight transition-colors duration-300 ${isHeroState ? 'text-white' : 'text-gray-900'}`}
                 style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.3px' }}
               >
                 Mariah Coirs
@@ -90,28 +93,28 @@ export default function Navbar() {
                     key={label}
                     to={href}
                     className={[
-                      'relative px-3 py-1.5 text-[14.5px] font-medium text-gray-600',
-                      'rounded-md transition-colors duration-200 hover:text-gray-900',
+                      `relative px-3 py-1.5 text-[14.5px] font-medium ${isHeroState ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`,
+                      'rounded-md transition-colors duration-200',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700',
                       'group',
                     ].join(' ')}
                   >
                     {label}
-                    <span aria-hidden="true" className={['absolute bottom-0 left-3 right-3 h-[1.5px] rounded-full', 'bg-gray-900 scale-x-0 origin-left', 'transition-transform duration-250 ease-out', 'group-hover:scale-x-100'].join(' ')} />
+                    <span aria-hidden="true" className={['absolute bottom-0 left-3 right-3 h-[1.5px] rounded-full', isHeroState ? 'bg-white' : 'bg-gray-900', 'scale-x-0 origin-left', 'transition-transform duration-250 ease-out', 'group-hover:scale-x-100'].join(' ')} />
                   </Link>
                 ) : (
                   <a
                     key={label}
                     href={href}
                     className={[
-                      'relative px-3 py-1.5 text-[14.5px] font-medium text-gray-600',
-                      'rounded-md transition-colors duration-200 hover:text-gray-900',
+                      `relative px-3 py-1.5 text-[14.5px] font-medium ${isHeroState ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`,
+                      'rounded-md transition-colors duration-200',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700',
                       'group',
                     ].join(' ')}
                   >
                     {label}
-                    <span aria-hidden="true" className={['absolute bottom-0 left-3 right-3 h-[1.5px] rounded-full', 'bg-gray-900 scale-x-0 origin-left', 'transition-transform duration-250 ease-out', 'group-hover:scale-x-100'].join(' ')} />
+                    <span aria-hidden="true" className={['absolute bottom-0 left-3 right-3 h-[1.5px] rounded-full', isHeroState ? 'bg-white' : 'bg-gray-900', 'scale-x-0 origin-left', 'transition-transform duration-250 ease-out', 'group-hover:scale-x-100'].join(' ')} />
                   </a>
                 )
               ))}
@@ -157,7 +160,7 @@ export default function Navbar() {
               <span
                 aria-hidden="true"
                 className={[
-                  'block w-5 h-[1.5px] bg-gray-800 rounded-full',
+                  `block w-5 h-[1.5px] rounded-full ${isHeroState ? 'bg-white' : 'bg-gray-800'}`,
                   'transition-all duration-300 origin-center',
                   menuOpen ? 'translate-y-[4.5px] rotate-45' : '',
                 ].join(' ')}
@@ -165,7 +168,7 @@ export default function Navbar() {
               <span
                 aria-hidden="true"
                 className={[
-                  'block w-5 h-[1.5px] bg-gray-800 rounded-full mt-[4px]',
+                  `block w-5 h-[1.5px] rounded-full mt-[4px] ${isHeroState ? 'bg-white' : 'bg-gray-800'}`,
                   'transition-all duration-300',
                   menuOpen ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100',
                 ].join(' ')}
@@ -173,7 +176,7 @@ export default function Navbar() {
               <span
                 aria-hidden="true"
                 className={[
-                  'block w-5 h-[1.5px] bg-gray-800 rounded-full mt-[4px]',
+                  `block w-5 h-[1.5px] rounded-full mt-[4px] ${isHeroState ? 'bg-white' : 'bg-gray-800'}`,
                   'transition-all duration-300 origin-center',
                   menuOpen ? '-translate-y-[10px] -rotate-45' : '',
                 ].join(' ')}
