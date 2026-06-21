@@ -16,6 +16,7 @@ import BlogListing from './pages/BlogListing'
 import BlogDetail from './pages/BlogDetail'
 import AdminPortal from './pages/AdminPortal'
 import FloatingActions from './components/FloatingActions'
+import Footer from './components/Footer'
 
 // ─── Landing Page (all sections) ─────────────────────────────────
 function LandingPage() {
@@ -34,6 +35,7 @@ function LandingPage() {
         <DomesticSupplySection />
         <ContactSection />
       </main>
+      <Footer />
       <FloatingActions />
     </>
   )
@@ -46,6 +48,7 @@ function PublicLayout({ children }: { children: React.ReactNode }) {
       <BulkPricingModal />
       <Navbar />
       {children}
+      <Footer />
       <FloatingActions />
     </>
   )
