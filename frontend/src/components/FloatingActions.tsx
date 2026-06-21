@@ -42,7 +42,9 @@ const DocumentIcon = ({ className }: { className?: string }) => (
 );
 
 export default function FloatingActions() {
-  const { openModal } = useModal();
+  const { modalState, openModal } = useModal();
+
+  if (modalState.isOpen) return null;
 
   return (
     <>
