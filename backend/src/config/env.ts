@@ -14,6 +14,12 @@ const envSchema = z.object({
   JWT_EXPIRES_IN: z.string().default('7d'),
   ADMIN_EMAIL: z.string().email('Invalid ADMIN_EMAIL format'),
   ADMIN_PASSWORD: z.string().min(6, 'ADMIN_PASSWORD must be at least 6 characters'),
+  SMTP_HOST: z.string().min(1).optional(),
+  SMTP_PORT: z.coerce.number().int().positive().default(587),
+  SMTP_SECURE: z.enum(['true', 'false']).default('false').transform((value) => value === 'true'),
+  SMTP_USER: z.string().optional(),
+  SMTP_PASSWORD: z.string().optional(),
+  EMAIL_FROM: z.string().optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);

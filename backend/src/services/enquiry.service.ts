@@ -1,9 +1,12 @@
 import { enquiryRepository, EnquiryFilter } from '../repositories/enquiry.repository';
 import { CreateEnquiryInput } from '../validators/enquiry.validator';
+import { emailService } from './email.service';
 
 export class EnquiryService {
   async createEnquiry(input: CreateEnquiryInput) {
-    return enquiryRepository.create(input);
+    const enquiry = await enquiryRepository.create(input);
+    await emailService.sendEnquiryEmails(enquiry);
+    return enquiry;
   }
 
   async getEnquiries(filters: { search?: string; startDate?: string; endDate?: string } = {}) {
