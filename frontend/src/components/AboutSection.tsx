@@ -17,8 +17,8 @@ const CERTIFICATIONS = [
 ];
 
 const STATS = [
-  { value: '15+',    label: 'Years Experience' },
-  { value: '490+',   label: 'Global Clients' },
+  { value: '15+', label: 'Years Experience' },
+  { value: '490+', label: 'Global Clients' },
   { value: '1,000+', label: 'MT Capacity/Mo' },
 ];
 
@@ -26,7 +26,7 @@ const EASE_CUBIC: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 // ─── Animation helpers ───────────────────────────────────────────
 const makeSlide = (dir: 'left' | 'right'): Variants => ({
-  hidden:  { opacity: 0, x: dir === 'left' ? -56 : 56 },
+  hidden: { opacity: 0, x: dir === 'left' ? -56 : 56 },
   visible: {
     opacity: 1, x: 0,
     transition: { duration: 0.85, ease: EASE_CUBIC },
@@ -34,7 +34,7 @@ const makeSlide = (dir: 'left' | 'right'): Variants => ({
 });
 
 const fadeUp = (delay = 0): Variants => ({
-  hidden:  { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1, y: 0,
     transition: { duration: 0.7, ease: EASE_CUBIC, delay },
@@ -42,7 +42,7 @@ const fadeUp = (delay = 0): Variants => ({
 });
 
 const counterAnim = (delay = 0): Variants => ({
-  hidden:  { opacity: 0, y: 24, scale: 0.88 },
+  hidden: { opacity: 0, y: 24, scale: 0.88 },
   visible: {
     opacity: 1, y: 0, scale: 1,
     transition: { duration: 0.65, ease: EASE_CUBIC, delay },
@@ -123,8 +123,8 @@ function FloatingCard({ icon, title, subtitle, position, delay = 0, reduce }: Fl
 // ─── Main Component ───────────────────────────────────────────────
 export default function AboutSection() {
   const { openModal } = useModal();
-  const sectionRef  = useRef<HTMLElement>(null);
-  const isInView    = useInView(sectionRef, { once: true, amount: 0.15 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
   const shouldReduce = useReducedMotion();
 
   return (
@@ -189,25 +189,6 @@ export default function AboutSection() {
               />
             </div>
 
-            {/* ── Floating card — TOP LEFT ── */}
-            <FloatingCard
-              icon="⚡"
-              title="1,000+ MT / Month"
-              subtitle="Production Capacity"
-              position="top-left"
-              delay={0.5}
-              reduce={!!shouldReduce}
-            />
-
-            {/* ── Floating card — BOTTOM RIGHT ── */}
-            <FloatingCard
-              icon="🏅"
-              title="ISO 9001:2015"
-              subtitle="Certified Manufacturer"
-              position="bottom-right"
-              delay={0.65}
-              reduce={!!shouldReduce}
-            />
 
             {/* Decorative corner accent */}
             <div
