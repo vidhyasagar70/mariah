@@ -13,6 +13,7 @@ import GallerySection from './components/GallerySection'
 import CertificationsSection from './components/CertificationsSection'
 // import GlobalNetworkSection from './components/GlobalNetworkSection'
 import DomesticSupplySection from './components/DomesticSupplySection'
+import FAQSection from './components/FAQSection'
 import ContactSection from './components/ContactSection'
 import BlogListing from './pages/BlogListing'
 import BlogDetail from './pages/BlogDetail'
@@ -37,6 +38,7 @@ function LandingPage() {
         <CertificationsSection />
         {/* <GlobalNetworkSection /> */}
         <DomesticSupplySection />
+        <FAQSection />
         <ContactSection />
       </main>
       <Footer />
