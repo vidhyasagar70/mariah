@@ -4,7 +4,7 @@ import { authApi, blogApi, enquiryApi, dashboardApi, setAdminToken, clearAdminTo
 import type { Blog, Enquiry, DashboardSummary } from '../lib/api';
 
 // ─── Product Types ────────────────────────────────────────────────
-type ProductCategory = 'Cocopeat' | 'Coir Fibre' | 'Coir Mats' | 'Geotextiles';
+type ProductCategory = 'Cocopeat' | 'Coir Fibre' | 'Geotextiles' | 'Chips mixed Cocopeat blocks' | 'Grow bags' | 'Custom';
 type ProductStatus = 'Published' | 'Draft' | 'Archived';
 
 interface Product {
@@ -20,13 +20,13 @@ interface Product {
   updatedAt: string;
 }
 
-const PRODUCT_CATEGORIES: ProductCategory[] = ['Cocopeat', 'Coir Fibre', 'Coir Mats', 'Geotextiles'];
+const PRODUCT_CATEGORIES: ProductCategory[] = ['Cocopeat', 'Coir Fibre', 'Geotextiles', 'Chips mixed Cocopeat blocks', 'Grow bags', 'Custom'];
 const PRODUCT_STATUSES: ProductStatus[] = ['Published', 'Draft', 'Archived'];
 
 const STATUS_STYLE: Record<string, { bg: string; color: string }> = {
   Published: { bg: 'rgba(22,163,74,0.1)', color: '#16A34A' },
-  Draft:     { bg: 'rgba(100,116,139,0.1)', color: '#64748B' },
-  Archived:  { bg: 'rgba(220,38,38,0.08)', color: '#DC2626' },
+  Draft: { bg: 'rgba(100,116,139,0.1)', color: '#64748B' },
+  Archived: { bg: 'rgba(220,38,38,0.08)', color: '#DC2626' },
 };
 
 function getProductImageUrl(img: string | undefined) {
@@ -74,11 +74,11 @@ function ProductFormDrawer({ product, onClose, onSaved }: { product: Product | n
   const [moq, setMoq] = useState(product?.moq ?? '');
   const [status, setStatus] = useState<string>(product?.status ?? 'Draft');
   const [description, setDescription] = useState(product?.description ?? '');
-  
+
   const [existingImages, setExistingImages] = useState<string[]>(product?.images ?? []);
   const [newFiles, setNewFiles] = useState<{ id: string; file: File; preview: string }[]>([]);
   const [specs, setSpecs] = useState<{ label: string; value: string }[]>(product?.specs ?? []);
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [isDragOver, setIsDragOver] = useState(false);
@@ -129,7 +129,7 @@ function ProductFormDrawer({ product, onClose, onSaved }: { product: Product | n
     fd.append('moq', moq.trim());
     fd.append('status', status);
     fd.append('description', description.trim());
-    
+
     // Filter specs that have either label or value
     const filteredSpecs = specs.filter((s) => s.label.trim() && s.value.trim());
     fd.append('specs', JSON.stringify(filteredSpecs));
@@ -137,7 +137,7 @@ function ProductFormDrawer({ product, onClose, onSaved }: { product: Product | n
     if (isEdit) {
       fd.append('existingImages', JSON.stringify(existingImages));
     }
-    
+
     newFiles.forEach((item) => {
       fd.append('images', item.file);
     });
