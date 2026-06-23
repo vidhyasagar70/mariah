@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: 'Process', href: '/#process' },
   { label: 'Gallery', href: '/#gallery' },
   { label: 'Certifications', href: '/#certifications' },
+  { label: 'Faq', href: '/#faq' },
   // { label: 'Global Reach',href: '/#global-reach'},
   { label: 'Blog', href: '/blogs', isRoute: true },
   { label: 'Contact', href: '/#contact' },
