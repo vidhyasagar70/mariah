@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import {
   motion,
   useInView,
@@ -137,37 +137,17 @@ const headerFade: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE_CUBIC } },
 };
 
-const gridFade: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-    },
-  },
-};
-
-const cardFade: Variants = {
-  hidden: { opacity: 0, y: 35 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: EASE_CUBIC },
-  },
-};
-
 // ─── Feature Card Component ────────────────────────────────────────
 function FeatureCard({ feature, reduce }: { feature: Feature; reduce: boolean }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
-      variants={cardFade}
       onHoverStart={() => !reduce && setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       whileHover={reduce ? {} : { y: -8 }}
       transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-      className="relative flex flex-col justify-start p-8 overflow-hidden shrink-0 select-none cursor-default"
+      className="relative flex flex-col justify-start p-8 overflow-hidden shrink-0 select-none cursor-default h-full"
       style={{
         minHeight: '230px',
         background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
@@ -181,7 +161,6 @@ function FeatureCard({ feature, reduce }: { feature: Feature; reduce: boolean })
         transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
       }}
     >
-      {/* Subtle card radial glow */}
       {hovered && (
         <div
           className="absolute inset-0 pointer-events-none"
@@ -191,7 +170,6 @@ function FeatureCard({ feature, reduce }: { feature: Feature; reduce: boolean })
         />
       )}
 
-      {/* Icon Container */}
       <motion.div
         animate={hovered ? { scale: 1.05 } : { scale: 1.0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
@@ -205,7 +183,6 @@ function FeatureCard({ feature, reduce }: { feature: Feature; reduce: boolean })
         {feature.icon}
       </motion.div>
 
-      {/* Card Content */}
       <h3
         className="mt-5 font-bold tracking-tight text-white text-[17px] sm:text-[18px]"
         style={{ letterSpacing: '-0.01em' }}
@@ -219,6 +196,138 @@ function FeatureCard({ feature, reduce }: { feature: Feature; reduce: boolean })
         {feature.description}
       </p>
     </motion.div>
+  );
+}
+
+// ─── Carousel Arrow Button ─────────────────────────────────────────
+function ArrowButton({
+  direction,
+  onClick,
+  disabled,
+}: {
+  direction: 'left' | 'right';
+  onClick: () => void;
+  disabled: boolean;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={direction === 'left' ? 'Previous' : 'Next'}
+      className="flex items-center justify-center w-11 h-11 rounded-full shrink-0 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+      style={{
+        background: 'rgba(255, 255, 255, 0.04)',
+        border: '1px solid rgba(255, 255, 255, 0.10)',
+        color: '#C99B67',
+      }}
+      onMouseEnter={(e) => {
+        if (!disabled) {
+          e.currentTarget.style.borderColor = 'rgba(201, 155, 103, 0.40)';
+          e.currentTarget.style.background = 'rgba(201, 155, 103, 0.08)';
+        }
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.10)';
+        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+      }}
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        {direction === 'left' ? <polyline points="15 18 9 12 15 6" /> : <polyline points="9 18 15 12 9 6" />}
+      </svg>
+    </button>
+  );
+}
+
+// ─── Carousel Component ────────────────────────────────────────────
+function FeaturesCarousel({ reduce }: { reduce: boolean }) {
+  const [itemsPerView, setItemsPerView] = useState(3);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const computeItemsPerView = () => {
+      if (window.innerWidth < 768) return 1;
+      if (window.innerWidth < 1024) return 2;
+      return 3;
+    };
+    const handleResize = () => {
+      setItemsPerView(computeItemsPerView());
+      setIndex(0);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, FEATURES.length - itemsPerView);
+
+  const goTo = useCallback(
+    (newIndex: number) => {
+      setIndex(Math.max(0, Math.min(maxIndex, newIndex)));
+    },
+    [maxIndex]
+  );
+
+  const handlePrev = () => goTo(index - 1);
+  const handleNext = () => goTo(index + 1);
+
+  const dotCount = maxIndex + 1;
+
+  return (
+    <div className="relative">
+      {/* Track */}
+      <div className="overflow-hidden">
+        <motion.div
+          className="flex gap-6 sm:gap-8"
+          animate={{ x: `calc(-${index} * (100% / ${itemsPerView}) - ${index} * (1.5rem / ${itemsPerView}))` }}
+          transition={reduce ? { duration: 0 } : { duration: 0.55, ease: EASE_CUBIC }}
+          drag={itemsPerView === 1 ? 'x' : false}
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.15}
+          onDragEnd={(_, info) => {
+            if (info.offset.x < -60) handleNext();
+            else if (info.offset.x > 60) handlePrev();
+          }}
+        >
+          {FEATURES.map((feature) => (
+            <div
+              key={feature.id}
+              className="shrink-0"
+              style={{
+                width: `calc((100% - ${(itemsPerView - 1) * 1.5}rem) / ${itemsPerView})`,
+              }}
+            >
+              <FeatureCard feature={feature} reduce={reduce} />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Controls */}
+      <div className="flex items-center justify-center gap-6 mt-8">
+        <ArrowButton direction="left" onClick={handlePrev} disabled={index === 0} />
+
+        {/* Dots */}
+        <div className="flex items-center gap-2">
+          {Array.from({ length: dotCount }).map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => goTo(i)}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === index ? '24px' : '8px',
+                height: '8px',
+                background: i === index ? '#C99B67' : 'rgba(255, 255, 255, 0.18)',
+              }}
+            />
+          ))}
+        </div>
+
+        <ArrowButton direction="right" onClick={handleNext} disabled={index === maxIndex} />
+      </div>
+    </div>
   );
 }
 
@@ -236,8 +345,8 @@ export default function WhyChooseSection() {
       className="relative w-full overflow-hidden"
       style={{
         background: '#0A0A0A',
-        paddingTop: '120px',
-        paddingBottom: '120px',
+        paddingTop: '64px',
+        paddingBottom: '64px',
       }}
     >
       {/* ── Background Radial Accent Gradients ── */}
@@ -253,7 +362,7 @@ export default function WhyChooseSection() {
       />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-16">
-        
+
         {/* ══════════════════════════════════════════
             SECTION HEADER
         ══════════════════════════════════════════ */}
@@ -261,10 +370,10 @@ export default function WhyChooseSection() {
           variants={headerFade}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
           <span
-            className="inline-block text-[11px] font-bold uppercase tracking-[0.32em] mb-4"
+            className="inline-block text-[11px] font-bold uppercase tracking-[0.32em] mb-2"
             style={{ color: '#C99B67' }}
           >
             Why Partner With Us
@@ -282,22 +391,9 @@ export default function WhyChooseSection() {
         </motion.div>
 
         {/* ══════════════════════════════════════════
-            FEATURES GRID
+            FEATURES CAROUSEL
         ══════════════════════════════════════════ */}
-        <motion.div
-          variants={gridFade}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {FEATURES.map((feature) => (
-            <FeatureCard
-              key={feature.id}
-              feature={feature}
-              reduce={!!shouldReduce}
-            />
-          ))}
-        </motion.div>
+        <FeaturesCarousel reduce={!!shouldReduce} />
 
       </div>
     </section>

@@ -10,18 +10,18 @@ import { useModal } from '../context/ModalContext';
 // ─── Image Slides ────────────────────────────────────────────────
 const SLIDES = [
   { src: '/mariahcoirs/droven_view.jpeg', alt: 'Aerial view of Mariah Coirs facility' },
-  { src: '/mariahcoirs/machine_process.jpeg', alt: 'Coir processing machinery in operation' },
+  // { src: '/mariahcoirs/machine_process.jpeg', alt: 'Coir processing machinery in operation' },
   { src: '/mariahcoirs/machine_top.jpeg', alt: 'Top view of processing machines' },
   { src: '/mariahcoirs/coir_group.jpeg', alt: 'Top view of processing machines' },
   { src: '/mariahcoirs/machine.jpeg', alt: 'Top view of processing machines' },
 
   { src: '/mariahcoirs/raw_material.jpeg', alt: 'Top view of processing machines' },
   { src: '/mariahcoirs/long_view.jpeg', alt: 'Top view of processing machines' },
-  { src: '/mariahcoirs/process.jpeg', alt: 'Coir manufacturing process' },
+  // { src: '/mariahcoirs/process.jpeg', alt: 'Coir manufacturing process' },
   { src: '/mariahcoirs/mills_top_view.jpeg', alt: 'Top view of coir mills' },
   { src: '/mariahcoirs/bed.jpeg', alt: 'Coco peat growing medium' },
-  { src: '/mariahcoirs/machinr_cutter.jpeg', alt: 'Coir cutter machine' },
-  { src: '/mariahcoirs/coco_husk_cutted.jpg', alt: 'Cut coco husk ready for processing' },
+  // { src: '/mariahcoirs/machinr_cutter.jpeg', alt: 'Coir cutter machine' },
+  // { src: '/mariahcoirs/coco_husk_cutted.jpg', alt: 'Cut coco husk ready for processing' },
 ];
 
 const SLIDE_DURATION = 5000; // ms

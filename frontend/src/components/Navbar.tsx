@@ -3,22 +3,22 @@ import { Link, useLocation } from 'react-router-dom';
 import { useModal } from '../context/ModalContext';
 
 const NAV_LINKS = [
-  { label: 'Products',    href: '/#products'    },
-  { label: 'About',       href: '/#about'       },
-  { label: 'Industries',  href: '/#industries'  },
-  { label: 'Process',     href: '/#process'     },
-  { label: 'Gallery',     href: '/#gallery'     },
+  { label: 'Products', href: '/#products' },
+  { label: 'About', href: '/#about' },
+  { label: 'Industries', href: '/#industries' },
+  { label: 'Process', href: '/#process' },
+  { label: 'Gallery', href: '/#gallery' },
   { label: 'Certifications', href: '/#certifications' },
-  { label: 'Global Reach',href: '/#global-reach'},
-  { label: 'Blog',        href: '/blogs',  isRoute: true },
-  { label: 'Contact',     href: '/#contact'     },
+  // { label: 'Global Reach',href: '/#global-reach'},
+  { label: 'Blog', href: '/blogs', isRoute: true },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export default function Navbar() {
   const { openModal } = useModal();
   const { pathname } = useLocation();
-  const [menuOpen, setMenuOpen]   = useState(false);
-  const [scrolled, setScrolled]   = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const isHeroState = pathname === '/' && !scrolled;
 
   /* ── scroll shadow ── */
@@ -249,8 +249,8 @@ export default function Navbar() {
               fill="none" aria-hidden="true"
               stroke="#374151" strokeWidth="2" strokeLinecap="round"
             >
-              <line x1="2" y1="2" x2="16" y2="16"/>
-              <line x1="16" y1="2" x2="2" y2="16"/>
+              <line x1="2" y1="2" x2="16" y2="16" />
+              <line x1="16" y1="2" x2="2" y2="16" />
             </svg>
           </button>
         </div>
@@ -278,7 +278,7 @@ export default function Navbar() {
               >
                 {label}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="ml-auto opacity-40">
-                  <polyline points="6 3 11 8 6 13"/>
+                  <polyline points="6 3 11 8 6 13" />
                 </svg>
               </Link>
             ) : (
@@ -298,7 +298,7 @@ export default function Navbar() {
               >
                 {label}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="ml-auto opacity-40">
-                  <polyline points="6 3 11 8 6 13"/>
+                  <polyline points="6 3 11 8 6 13" />
                 </svg>
               </a>
             )

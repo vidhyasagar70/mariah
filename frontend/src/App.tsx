@@ -11,7 +11,7 @@ import IndustriesSection from './components/IndustriesSection'
 import ProcessSection from './components/ProcessSection'
 import GallerySection from './components/GallerySection'
 import CertificationsSection from './components/CertificationsSection'
-import GlobalNetworkSection from './components/GlobalNetworkSection'
+// import GlobalNetworkSection from './components/GlobalNetworkSection'
 import DomesticSupplySection from './components/DomesticSupplySection'
 import ContactSection from './components/ContactSection'
 import BlogListing from './pages/BlogListing'
@@ -35,7 +35,7 @@ function LandingPage() {
         <ProcessSection />
         <GallerySection />
         <CertificationsSection />
-        <GlobalNetworkSection />
+        {/* <GlobalNetworkSection /> */}
         <DomesticSupplySection />
         <ContactSection />
       </main>
