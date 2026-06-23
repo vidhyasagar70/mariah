@@ -58,30 +58,19 @@ export default function Navbar() {
         style={{ backgroundColor: isHeroState ? 'transparent' : '#F8F6F3' }}
       >
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
-          <div className="flex items-center justify-between h-[72px]">
+          <div className="flex items-center justify-between h-[100px]">
 
             {/* ── Logo ── */}
             <Link
               to="/"
               aria-label="Mariah Coirs – home"
-              className="flex flex-col justify-center leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 rounded-sm"
+              className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700 rounded-sm"
             >
-              <span
-                className={`text-[22px] font-extrabold tracking-tight transition-colors duration-300 ${isHeroState ? 'text-white' : 'text-gray-900'}`}
-                style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.3px' }}
-              >
-                Mariah Coirs
-              </span>
-              <span
-                className="text-[10px] font-semibold mt-[3px]"
-                style={{
-                  color: '#B8892A',
-                  letterSpacing: '0.22em',
-                  fontFamily: "'Inter', sans-serif",
-                }}
-              >
-                EXPORT &nbsp;·&nbsp; SINCE 2009
-              </span>
+              <img
+                src="/mariahcoirs/logo3.png"
+                alt="Mariah Coirs"
+                className="h-20 w-auto object-contain"
+              />
             </Link>
 
             {/* ── Desktop Nav ── */}
@@ -95,28 +84,28 @@ export default function Navbar() {
                     key={label}
                     to={href}
                     className={[
-                      `relative px-3 py-1.5 text-[14.5px] font-medium ${isHeroState ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`,
-                      'rounded-md transition-colors duration-200',
+                      `relative px-3 py-1.5 text-[14.5px] font-medium transition-colors duration-200 ${isHeroState ? 'text-white/80 hover:text-[#E0B463]' : 'text-gray-600 hover:text-[#B8892A]'}`,
+                      'rounded-md',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700',
                       'group',
                     ].join(' ')}
                   >
                     {label}
-                    <span aria-hidden="true" className={['absolute bottom-0 left-3 right-3 h-[1.5px] rounded-full', isHeroState ? 'bg-white' : 'bg-gray-900', 'scale-x-0 origin-left', 'transition-transform duration-250 ease-out', 'group-hover:scale-x-100'].join(' ')} />
+                    <span aria-hidden="true" className={['absolute bottom-0 left-3 right-3 h-[1.5px] rounded-full', 'bg-[#B8892A]', 'scale-x-0 origin-left', 'transition-transform duration-250 ease-out', 'group-hover:scale-x-100'].join(' ')} />
                   </Link>
                 ) : (
                   <a
                     key={label}
                     href={href}
                     className={[
-                      `relative px-3 py-1.5 text-[14.5px] font-medium ${isHeroState ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-gray-900'}`,
-                      'rounded-md transition-colors duration-200',
+                      `relative px-3 py-1.5 text-[14.5px] font-medium transition-colors duration-200 ${isHeroState ? 'text-white/80 hover:text-[#E0B463]' : 'text-gray-600 hover:text-[#B8892A]'}`,
+                      'rounded-md',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700',
                       'group',
                     ].join(' ')}
                   >
                     {label}
-                    <span aria-hidden="true" className={['absolute bottom-0 left-3 right-3 h-[1.5px] rounded-full', isHeroState ? 'bg-white' : 'bg-gray-900', 'scale-x-0 origin-left', 'transition-transform duration-250 ease-out', 'group-hover:scale-x-100'].join(' ')} />
+                    <span aria-hidden="true" className={['absolute bottom-0 left-3 right-3 h-[1.5px] rounded-full', 'bg-[#B8892A]', 'scale-x-0 origin-left', 'transition-transform duration-250 ease-out', 'group-hover:scale-x-100'].join(' ')} />
                   </a>
                 )
               ))}
@@ -130,13 +119,20 @@ export default function Navbar() {
                 className={[
                   'inline-flex items-center justify-center',
                   'px-7 py-[13px] rounded-xl',
-                  'bg-gray-900 text-white text-[14px] font-semibold',
+                  'text-white text-[14px] font-semibold',
                   'transition-all duration-200 ease-out',
-                  'hover:bg-gray-700 hover:scale-[1.03]',
-                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2',
+                  'hover:scale-[1.03]',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
                   'active:scale-[0.98]',
                 ].join(' ')}
-                style={{ border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
+                style={{
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                  backgroundColor: '#B8892A',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#A37A24')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#B8892A')}
                 aria-label="Get an export quote from Mariah Coirs"
               >
                 Get Export Quote
@@ -216,20 +212,13 @@ export default function Navbar() {
         style={{ backgroundColor: '#F8F6F3' }}
       >
         {/* Drawer header */}
-        <div className="flex items-center justify-between px-6 h-[72px] border-b border-gray-200">
-          <Link to="/" onClick={closeMenu} className="flex flex-col leading-none">
-            <span
-              className="text-[20px] font-extrabold text-gray-900"
-              style={{ letterSpacing: '-0.3px' }}
-            >
-              Mariah Coirs
-            </span>
-            <span
-              className="text-[9px] font-semibold mt-[2px]"
-              style={{ color: '#B8892A', letterSpacing: '0.22em' }}
-            >
-              EXPORT &nbsp;·&nbsp; SINCE 2009
-            </span>
+        <div className="flex items-center justify-between px-6 h-[100px] border-b border-gray-200">
+          <Link to="/" onClick={closeMenu} className="flex items-center">
+            <img
+              src="/mariahcoirs/logo3.png"
+              alt="Mariah Coirs"
+              className="h-16 w-auto object-contain"
+            />
           </Link>
 
           {/* Close button */}
@@ -270,8 +259,8 @@ export default function Navbar() {
                 className={[
                   'flex items-center px-4 py-4 rounded-xl',
                   'text-[16px] font-medium text-gray-700',
-                  'hover:bg-gray-100 hover:text-gray-900',
-                  'active:bg-gray-200',
+                  'hover:bg-[#B8892A]/10 hover:text-[#B8892A]',
+                  'active:bg-[#B8892A]/20',
                   'transition-all duration-200',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700',
                 ].join(' ')}
@@ -290,8 +279,8 @@ export default function Navbar() {
                 className={[
                   'flex items-center px-4 py-4 rounded-xl',
                   'text-[16px] font-medium text-gray-700',
-                  'hover:bg-gray-100 hover:text-gray-900',
-                  'active:bg-gray-200',
+                  'hover:bg-[#B8892A]/10 hover:text-[#B8892A]',
+                  'active:bg-[#B8892A]/20',
                   'transition-all duration-200',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700',
                 ].join(' ')}
@@ -313,12 +302,18 @@ export default function Navbar() {
             className={[
               'flex items-center justify-center w-full',
               'px-6 py-4 rounded-xl',
-              'bg-gray-900 text-white text-[15px] font-semibold',
-              'hover:bg-gray-700 active:scale-[0.98]',
+              'text-white text-[15px] font-semibold',
+              'active:scale-[0.98]',
               'transition-all duration-200',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
             ].join(' ')}
-            style={{ border: 'none', cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}
+            style={{
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+              width: '100%',
+              backgroundColor: '#B8892A',
+            }}
             aria-label="Get an export quote from Mariah Coirs"
           >
             Get Export Quote

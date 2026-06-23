@@ -176,25 +176,7 @@ export default function HeroSection() {
         <div className="max-w-[720px] w-full">
 
           {/* ── Badge ── */}
-          <motion.div
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible"
-            custom={0.1}
-            className="inline-flex mb-4 sm:mb-6"
-          >
-            <span
-              className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full text-[8px] sm:text-[11px] font-semibold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-amber-300 border"
-              style={{
-                background: 'transparent',
-                borderColor: 'rgba(185,128,60,0.55)',
-              }}
-            >
-              {/* Gold dot */}
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" aria-hidden="true" />
-              India's Premier Coir Manufacturer &amp; Exporter
-            </span>
-          </motion.div>
+
 
           {/* ── Heading ── */}
           <motion.h1
