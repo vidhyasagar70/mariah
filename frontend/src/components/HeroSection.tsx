@@ -46,13 +46,7 @@ const fadeUp: Variants = {
   }),
 };
 
-const fadeIn: Variants = {
-  hidden: { opacity: 0 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    transition: { duration: 0.6, ease: 'easeOut', delay },
-  }),
-};
+
 
 // ─── Component ───────────────────────────────────────────────────
 export default function HeroSection() {
