@@ -165,7 +165,7 @@ export default function HeroSection() {
             <br />
             &amp;&nbsp;Coir&nbsp;Products
             <br />
-            <span style={{ color: '#E5A93C', textShadow: '0 4px 20px rgba(0,0,0,0.30)' }}>
+            <span style={{ color: 'rgb(229, 169, 60)', textShadow: '0 4px 20px rgba(0,0,0,0.30)' }}>
               for Global Growers
             </span>
           </motion.h1>
@@ -205,14 +205,14 @@ export default function HeroSection() {
               aria-label="Request an export quote from Mariah Coirs"
               className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg font-bold text-[14px] sm:text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               style={{
-                background: '#E5A93C',
+                background: 'rgb(229, 169, 60)',
                 color: '#1a1a1a',
                 boxShadow: '0 4px 20px rgba(229, 169, 60, 0.3)',
                 border: 'none',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#D99828')}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgb(229, 169, 60)')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#E5A93C')}
             >
               Request Export Quote
@@ -263,7 +263,7 @@ export default function HeroSection() {
             >
               <span
                 className="text-2xl sm:text-4xl font-black leading-none"
-                style={{ color: '#E5A93C' }}
+                style={{ color: 'rgb(229, 169, 60)' }}
               >
                 {value}
               </span>

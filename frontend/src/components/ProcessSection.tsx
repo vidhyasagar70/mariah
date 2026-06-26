@@ -188,7 +188,7 @@ export default function ProcessSection() {
               letterSpacing: '-0.025em',
             }}
           >
-            From <span style={{ color: '#E5A93C' }}>Husk</span> to <span style={{ color: '#E5A93C' }}>Export Container</span>
+            From <span style={{ color: 'rgb(229, 169, 60)' }}>Husk</span> to <span style={{ color: 'rgb(229, 169, 60)' }}>Export Container</span>
           </h2>
         </motion.div>
 
@@ -206,7 +206,7 @@ export default function ProcessSection() {
           >
             {/* Animated progress reveal */}
             <motion.div
-              className="h-full origin-left bg-gradient-to-r from-[#E5A93C] to-[#C99B67]"
+              className="h-full origin-left bg-gradient-to-r from-rgb(229, 169, 60) to-[#C99B67]"
               initial={{ scaleX: 0 }}
               animate={isInView ? { scaleX: 1 } : {}}
               transition={{ duration: 1.4, ease: EASE_CUBIC }}
