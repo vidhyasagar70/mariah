@@ -81,7 +81,7 @@ export default function FloatingActions() {
           whileHover={{ y: -3 }}
           transition={{ type: 'spring', stiffness: 400, damping: 15 }}
           style={{
-            background: '#111111',
+            background: '#D39C62',
             color: '#FFFFFF',
             borderRadius: '999px',
             padding: '14px 24px',
@@ -113,7 +113,7 @@ export default function FloatingActions() {
           onClick={() => openModal('export')}
           style={{
             height: '52px',
-            background: '#111111',
+            background: '#D39C62',
             color: '#FFFFFF',
             borderRadius: '14px',
             fontWeight: 600,
